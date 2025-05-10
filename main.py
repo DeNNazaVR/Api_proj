@@ -406,7 +406,11 @@ def edit_entry(entry_id):
     form = EntryForm(obj=entry)
 
     if form.validate_on_submit():
-        form.populate_obj(entry)
+        entry.title = form.title.data
+        entry.content = form.content.data
+        entry.date = form.date.data
+        entry.mood = form.mood.data
+        entry.tags = form.tags.data
 
         # Загрузка нового изображения
         if 'image' in request.files:
